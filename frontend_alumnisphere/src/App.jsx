@@ -1,14 +1,12 @@
-import React from 'react'
-import Header from './components/layouts/Header'
-import Login from './components/pages/Login'
+import React from "react";
+import Routing from "./utils/Routing";
 
 function App() {
   return (
     <div>
-      <Header />
-      <div className='flex justify-center py-8 '><Login /></div>
+      <Routing />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
