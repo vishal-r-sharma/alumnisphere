@@ -5,6 +5,19 @@ import { Link } from "react-router-dom";
 function Signup() {
   const [role, setRole] = useState("student");
   const [jobInfo, setJobInfo] = useState("yes");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
+  // Function to validate password match
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+    if (password !== e.target.value) {
+      setPasswordError("Passwords do not match");
+    } else {
+      setPasswordError("");
+    }
+  };
 
   return (
     <div>
@@ -157,6 +170,7 @@ function Signup() {
               required
             />
 
+            {/* Password Field */}
             <label className="font-medium text-gray-700" htmlFor="password">
               Password
             </label>
@@ -166,27 +180,37 @@ function Signup() {
               className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1DBF73]"
               type="password"
               placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               required
             />
 
-            <label
-              className="font-medium text-gray-700"
-              htmlFor="confirmpassword"
-            >
+            {/* Confirm Password Field */}
+            <label className="font-medium text-gray-700" htmlFor="confirmpassword">
               Confirm Password
             </label>
             <input
               id="confirmpassword"
               name="confirmPassword"
-              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1DBF73]"
+              className={`w-full p-2 border rounded-md focus:outline-none focus:ring-2 ${
+                passwordError ? "border-red-500 focus:ring-red-500" : "border-gray-300 focus:ring-[#1DBF73]"
+              }`}
               type="password"
               placeholder="Re-enter your password"
+              value={confirmPassword}
+              onChange={handleConfirmPasswordChange}
               required
             />
+            {/* Password Error Message */}
+            {passwordError && (
+              <span className="text-red-500 text-sm">{passwordError}</span>
+            )}
 
+            {/* Signup Button */}
             <button
               type="submit"
               className="w-full h-[45px] bg-[#117554] text-white font-bold rounded-md hover:bg-[#0D5A40] transition duration-300"
+              disabled={passwordError !== ""}
             >
               Signup
             </button>
