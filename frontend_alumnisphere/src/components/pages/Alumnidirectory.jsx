@@ -106,6 +106,7 @@ const alumniData = [
 const ITEMS_PER_PAGE = 8;
 
 function Alumnidirectory() {
+  const [search, setSearch] = useState(""); // Search Filter
   const [department, setDepartment] = useState("");
   const [year, setYear] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -115,12 +116,13 @@ function Alumnidirectory() {
     const filtered = alumniData.filter(
       (alumni) =>
         (department === "" || alumni.department === department) &&
-        (year === "" || alumni.year === year)
+        (year === "" || alumni.year === year) &&
+        alumni.name.toLowerCase().includes(search.toLowerCase()) // Name Search Filter
     );
 
     // Randomizing alumni order
     return filtered.sort(() => Math.random() - 0.5);
-  }, [department, year]);
+  }, [search, department, year]);
 
   // Pagination logic
   const totalPages = Math.ceil(filteredAlumni.length / ITEMS_PER_PAGE);
@@ -134,6 +136,14 @@ function Alumnidirectory() {
 
       {/* Filter Section */}
       <div className="bg-gray-100 p-4 flex flex-wrap gap-4 justify-center items-center shadow-md">
+        {/* Search Filter */}
+        <input
+          type="text"
+          placeholder="Search by Name..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="p-2 border border-gray-300 rounded-md"
+        />
         {/* Department Filter */}
         <select
           value={department}
@@ -171,6 +181,7 @@ function Alumnidirectory() {
         {/* Clear Filters Button */}
         <button
           onClick={() => {
+            setSearch("");
             setDepartment("");
             setYear("");
           }}
@@ -212,12 +223,12 @@ function Alumnidirectory() {
                 </p>
               ) : (
                 <p className="text-gray-600 text-sm mt-1">
-                  Maybe currently not working
+                  It may not be working currently.
                 </p>
               )}
 
               {/* Contact Links */}
-              <div className="mt-3 flex flex-col gap-2 w-full">
+              <div className="mt-2 flex flex-col gap-2 w-full">
                 {/* Email */}
                 {alumni.email.trim().includes("@") && (
                   <a
