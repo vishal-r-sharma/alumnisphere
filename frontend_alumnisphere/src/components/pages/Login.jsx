@@ -7,10 +7,10 @@ function Login() {
     <>
       <Header />
       <Link
-                to="/dashboard/alumnidirectory"
+                to="/dashboard"
                 className="text-[#117554] font-semibold hover:underline"
               >
-                Alumni Directory
+                Dashboard
               </Link>
       <div className="flex justify-center py-8">
         <div className="w-[90%] md:w-[73%] h-auto bg-[#EBEAFF] flex flex-wrap md:flex-nowrap justify-evenly items-center p-6 rounded-lg shadow-lg gap-6">
