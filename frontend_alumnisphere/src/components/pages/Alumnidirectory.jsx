@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import Dashboardheader from "../layouts/Dashboardheader";
 import { MdEmail } from "react-icons/md";
 import { FaLinkedin } from "react-icons/fa";
@@ -110,6 +110,11 @@ function Alumnidirectory() {
   const [department, setDepartment] = useState("");
   const [year, setYear] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+
+  // Reset pagination when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [search, department, year]);
 
   // Filtering Alumni based on selection
   const filteredAlumni = useMemo(() => {
