@@ -140,7 +140,7 @@ function Alumnidirectory() {
       <Dashboardheader />
 
       {/* Filter Section */}
-      <div className="bg-gray-100 p-4 flex flex-wrap gap-4 justify-center items-center shadow-md">
+      <div className="bg-gray-100 p-2 flex flex-wrap gap-4 justify-center items-center shadow-md">
         {/* Search Filter */}
         <input
           type="text"
