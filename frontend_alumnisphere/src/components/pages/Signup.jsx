@@ -34,7 +34,7 @@ function Signup() {
             </h2>
 
             <label className="font-medium text-gray-700" htmlFor="name">
-              Name
+              Full Name
             </label>
             <input
               id="name"
