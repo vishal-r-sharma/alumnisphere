@@ -8,6 +8,20 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
+
+  // Function to validate email
+  const handleEmailChange = (e) => {
+    const value = e.target.value;
+    setEmail(value);
+
+    if (!value.endsWith("@ltce.in")) {
+      setEmailError("Email must be from @ltce.in domain");
+    } else {
+      setEmailError("");
+    }
+  };
 
   // Function to validate password match
   const handleConfirmPasswordChange = (e) => {
@@ -113,9 +127,7 @@ function Signup() {
               <option value="COMPUTER">Computer Engineering</option>
               <option value="CSE(AI&ML)">CSE (AI & ML)</option>
               <option value="CSE(DS)">CSE (Data Science)</option>
-              <option value="EXTC">
-                Electronics & Telecom. Engg.
-              </option>
+              <option value="EXTC">Electronics & Telecom. Engg.</option>
               <option value="ELECTICAL">Electrical Engineering</option>
               <option value="MECHANICAL">Mechanical Engineering</option>
             </select>
@@ -146,7 +158,10 @@ function Signup() {
               required
             />
 
-<label className="font-medium text-gray-700" htmlFor="linkedinprofile">
+            <label
+              className="font-medium text-gray-700"
+              htmlFor="linkedinprofile"
+            >
               Enter your Linkedin Profile URL
             </label>
             <input
@@ -164,11 +179,21 @@ function Signup() {
             <input
               id="email"
               name="email"
-              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1DBF73]"
+              className={`w-full p-2 border rounded-md focus:outline-none focus:ring-2 ${
+                emailError
+                  ? "border-red-500 focus:ring-red-500"
+                  : "border-gray-300 focus:ring-[#1DBF73]"
+              }`}
               type="email"
-              placeholder="Enter your email"
+              placeholder="Enter your email (must be @ltce.in)"
+              value={email}
+              onChange={handleEmailChange}
               required
             />
+            {/* Email Error Message */}
+            {emailError && (
+              <span className="text-red-500 text-sm">{emailError}</span>
+            )}
 
             {/* Password Field */}
             <label className="font-medium text-gray-700" htmlFor="password">
@@ -186,14 +211,19 @@ function Signup() {
             />
 
             {/* Confirm Password Field */}
-            <label className="font-medium text-gray-700" htmlFor="confirmpassword">
+            <label
+              className="font-medium text-gray-700"
+              htmlFor="confirmpassword"
+            >
               Confirm Password
             </label>
             <input
               id="confirmpassword"
               name="confirmPassword"
               className={`w-full p-2 border rounded-md focus:outline-none focus:ring-2 ${
-                passwordError ? "border-red-500 focus:ring-red-500" : "border-gray-300 focus:ring-[#1DBF73]"
+                passwordError
+                  ? "border-red-500 focus:ring-red-500"
+                  : "border-gray-300 focus:ring-[#1DBF73]"
               }`}
               type="password"
               placeholder="Re-enter your password"
@@ -210,7 +240,7 @@ function Signup() {
             <button
               type="submit"
               className="w-full h-[45px] bg-[#117554] text-white font-bold rounded-md hover:bg-[#0D5A40] transition duration-300"
-              disabled={passwordError !== ""}
+              disabled={passwordError !== "" || emailError !== ""}
             >
               Signup
             </button>

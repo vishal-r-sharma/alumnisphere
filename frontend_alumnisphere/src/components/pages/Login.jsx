@@ -1,17 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../layouts/Header";
 import { Link } from "react-router-dom";
 
 function Login() {
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
+
+  // Function to validate email
+  const handleEmailChange = (e) => {
+    const value = e.target.value;
+    setEmail(value);
+
+    if (!value.endsWith("@ltce.in")) {
+      setEmailError("Email must be from @ltce.in domain");
+    } else {
+      setEmailError("");
+    }
+  };
+
   return (
     <>
       <Header />
       <Link
-                to="/dashboard"
-                className="text-[#117554] font-semibold hover:underline"
-              >
-                Dashboard
-              </Link>
+        to="/dashboard"
+        className="text-[#117554] font-semibold hover:underline"
+      >
+        Dashboard
+      </Link>
       <div className="flex justify-center py-8">
         <div className="w-[90%] md:w-[73%] h-auto bg-[#EBEAFF] flex flex-wrap md:flex-nowrap justify-evenly items-center p-6 rounded-lg shadow-lg gap-6">
           {/* Image Section */}
@@ -39,11 +54,22 @@ function Login() {
               </label>
               <input
                 id="email"
-                className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1DBF73]"
+                name="email"
+                className={`w-full p-2 border rounded-md focus:outline-none focus:ring-2 ${
+                  emailError
+                    ? "border-red-500 focus:ring-red-500"
+                    : "border-gray-300 focus:ring-[#1DBF73]"
+                }`}
                 type="email"
-                placeholder="Enter your email"
+                placeholder="Enter your email (must be @ltce.in)"
+                value={email}
+                onChange={handleEmailChange}
                 required
               />
+              {/* Email Error Message */}
+              {emailError && (
+                <span className="text-red-500 text-sm">{emailError}</span>
+              )}
 
               <label className="font-medium text-gray-700" htmlFor="password">
                 Password
@@ -56,7 +82,10 @@ function Login() {
                 required
               />
 
-              <button className="w-full h-[45px] bg-[#117554] text-white font-bold rounded-md hover:bg-[#0D5A40] transition duration-300">
+              <button
+                className="w-full h-[45px] bg-[#117554] text-white font-bold rounded-md hover:bg-[#0D5A40] transition duration-300"
+                disabled={emailError !== ""}
+              >
                 Login
               </button>
             </div>
