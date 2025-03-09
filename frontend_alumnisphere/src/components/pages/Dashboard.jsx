@@ -1,7 +1,18 @@
 import React from "react";
 import DashboardHeader from "../layouts/Dashboardheader";
 import Extramenu_DashboardHeader from "../layouts/Extramenu_DashboardHeader";
-import { PieChart, Pie, AreaChart, Area, Tooltip, XAxis, YAxis, CartesianGrid, ResponsiveContainer, Legend } from "recharts";
+import {
+  PieChart,
+  Pie,
+  AreaChart,
+  Area,
+  Tooltip,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  ResponsiveContainer,
+  Legend,
+} from "recharts";
 
 const stats = [
   { title: "Total Students", value: 1500 },
@@ -39,8 +50,13 @@ function Dashboard() {
         {/* Statistics Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8">
           {stats.map((stat, index) => (
-            <div key={index} className="bg-white shadow-md p-6 rounded-lg text-center">
-              <h2 className="text-xl font-semibold text-gray-700">{stat.title}</h2>
+            <div
+              key={index}
+              className="bg-white shadow-md p-6 rounded-lg text-center"
+            >
+              <h2 className="text-xl font-semibold text-gray-700">
+                {stat.title}
+              </h2>
               <p className="text-3xl font-bold text-blue-600">{stat.value}</p>
             </div>
           ))}
@@ -49,8 +65,12 @@ function Dashboard() {
         {/* Charts Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Pie Chart */}
-          <div className="bg-white shadow-md p-6 rounded-lg mb-6"> {/* Added mb-6 for spacing */}
-            <h2 className="text-lg font-semibold text-gray-700 mb-4 text-center">Job Categories Distribution</h2>
+          <div className="bg-white shadow-md p-6 rounded-lg mb-6">
+            {" "}
+            {/* Added mb-6 for spacing */}
+            <h2 className="text-lg font-semibold text-gray-700 mb-4 text-center">
+              Job Categories Distribution
+            </h2>
             <ResponsiveContainer width="100%" height={300}>
               <PieChart>
                 <Pie
@@ -71,7 +91,9 @@ function Dashboard() {
 
           {/* Area Chart */}
           <div className="bg-white shadow-md p-6 rounded-lg">
-            <h2 className="text-lg font-semibold text-gray-700 mb-4 text-center">Jobs Market Trends</h2>
+            <h2 className="text-lg font-semibold text-gray-700 mb-4 text-center">
+              Jobs Market Trends
+            </h2>
             <ResponsiveContainer width="100%" height={300}>
               <AreaChart data={areaData}>
                 <CartesianGrid strokeDasharray="3 3" />
@@ -79,7 +101,12 @@ function Dashboard() {
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Area type="monotone" dataKey="jobs" stroke="#82ca9d" fill="#82ca9d" />
+                <Area
+                  type="monotone"
+                  dataKey="jobs"
+                  stroke="#82ca9d"
+                  fill="#82ca9d"
+                />
               </AreaChart>
             </ResponsiveContainer>
           </div>
