@@ -14,7 +14,7 @@ function Account() {
     department: "CSE(IOT&CSBT)",
     graduationYear: "2025",
     linkedin: "https://linkedin.com/in/vishalsharma",
-    profilePicture: "https://vishalsharmadev.in/normalphotos/vishal.jpg", // Default Profile Image
+    profilePicture: "https://vishalsharmadev.in/normalphotos/vishal.jpg",
   };
 
   const [formData, setFormData] = useState(initialFormData);
@@ -62,7 +62,7 @@ function Account() {
   // Reset Form
   const handleReset = () => {
     setFormData(initialFormData);
-    setPreviewImage(initialFormData.profilePicture); // Restore the original profile image
+    setPreviewImage(initialFormData.profilePicture);
     setEmailError("");
     setPasswordError("");
   };
@@ -74,7 +74,7 @@ function Account() {
       <Extramenu_DashboardHeader />
 
       {/* Edit Account Form */}
-      <div className="max-w-xl mx-auto mt-8 p-6 bg-white shadow-md rounded-lg">
+      <div className="max-w-xl mx-auto mt-8 p-6 bg-white shadow-lg rounded-lg">
         <h1 className="text-2xl font-bold text-gray-800 text-center mb-6">
           Edit Account
         </h1>
@@ -150,6 +150,21 @@ function Account() {
             {passwordError && (
               <p className="text-red-500 text-sm">{passwordError}</p>
             )}
+          </div>
+
+          {/* LinkedIn Profile */}
+          <div>
+            <label className="block text-gray-700 font-medium">
+              LinkedIn Profile URL
+            </label>
+            <input
+              type="url"
+              name="linkedin"
+              value={formData.linkedin}
+              onChange={handleChange}
+              className="w-full p-2 border border-gray-300 rounded-md"
+              placeholder="Enter your LinkedIn profile URL"
+            />
           </div>
 
           {/* Role Selection */}
