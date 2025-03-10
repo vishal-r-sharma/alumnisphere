@@ -103,18 +103,18 @@ function Jobs() {
   // Convert date string to a Date object
   const parseDate = (dateString) => new Date(dateString);
 
-  // Get today's date and the date 2 months ago
+  // Get today's date and the date 1.5 years ago
   const today = new Date();
-  const fiveMonthsAgo = new Date();
-  fiveMonthsAgo.setMonth(today.getMonth() - 5);
+  const oneAndHalfYearsAgo = new Date();
+  oneAndHalfYearsAgo.setMonth(today.getMonth() - 18); // 1.5 years = 18 months
 
-  // Filter & Sort Jobs (Recent First + Last 2 Months)
+  // Filter & Sort Jobs (Recent First + Last 1.5 years)
   const filteredJobs = jobsData
     .map((job) => ({
       ...job,
       dateObj: parseDate(job.postedDate),
     }))
-    .filter((job) => job.dateObj >= fiveMonthsAgo) // Only keep jobs from last 5 months
+    .filter((job) => job.dateObj >= oneAndHalfYearsAgo) // Only keep jobs from last 1.5 years
     .sort((a, b) => b.dateObj - a.dateObj) // Sort jobs by most recent first
     .filter(
       (job) =>

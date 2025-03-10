@@ -1,12 +1,11 @@
-import React from 'react'
+import React from 'react';
 
 function Header() {
   return (
-    <div className='text-2xl text-white bg-[#243642] h-auto w-full flex justify-center p-2'>
-      <img className='w-[200px]' src="/alumnispherelogo.png" alt="" />
-      {/* <h1 className='font-semibold font-sans subpixel-antialiased tracking-wide text-justify'>ALUMNI SPHERE</h1> */}
+    <div className='text-2xl text-white bg-[#243642] h-auto w-full flex justify-center items-center'>
+      <img className='w-[150px] md:w-[200px] lg:w-[220px] h-auto m-1' src="/alumnispherelogo.png" alt="Alumni Sphere Logo" />
     </div>
-  )
+  );
 }
 
-export default Header
+export default Header;
