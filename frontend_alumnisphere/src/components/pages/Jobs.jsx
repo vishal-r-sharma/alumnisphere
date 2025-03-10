@@ -105,8 +105,8 @@ function Jobs() {
 
   // Get today's date and the date 2 months ago
   const today = new Date();
-  const twoMonthsAgo = new Date();
-  twoMonthsAgo.setMonth(today.getMonth() - 2);
+  const fiveMonthsAgo = new Date();
+  fiveMonthsAgo.setMonth(today.getMonth() - 5);
 
   // Filter & Sort Jobs (Recent First + Last 2 Months)
   const filteredJobs = jobsData
@@ -114,7 +114,7 @@ function Jobs() {
       ...job,
       dateObj: parseDate(job.postedDate),
     }))
-    .filter((job) => job.dateObj >= twoMonthsAgo) // Only keep jobs from last 2 months
+    .filter((job) => job.dateObj >= fiveMonthsAgo) // Only keep jobs from last 5 months
     .sort((a, b) => b.dateObj - a.dateObj) // Sort jobs by most recent first
     .filter(
       (job) =>
