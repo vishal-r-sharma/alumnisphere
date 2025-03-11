@@ -10,6 +10,7 @@ const developers = [
     image: "https://vishalsharmadev.in/normalphotos/vishal.jpg",
     linkedin: "https://www.linkedin.com/in/vishalsharma",
     portfolio: "https://vishalsharmadev.in",
+    email: "contact@vishalsharmadev.in",
   },
   {
     name: "Hitesh Prajapati",
@@ -17,6 +18,7 @@ const developers = [
     image: "https://vishalsharmadev.in/normalphotos/hitesh.jpeg",
     linkedin: "#",
     portfolio: "#",
+    email: "hitesh@gmail.com",
   },
   {
     name: "Vrushabh Prajapati",
@@ -24,6 +26,7 @@ const developers = [
     image: "https://vishalsharmadev.in/normalphotos/vrushabh.jpg",
     linkedin: "#",
     portfolio: "#",
+    email: "vrushabh@gmail.com",
   },
   {
     name: "Amol Sahu",
@@ -31,6 +34,7 @@ const developers = [
     image: "https://vishalsharmadev.in/normalphotos/amol.jpeg",
     linkedin: "#",
     portfolio: "#",
+    email: "amolsahu@gmail.com",
   },
 ];
 
@@ -95,6 +99,7 @@ function About() {
                   {dev.name}
                 </h3>
                 <p className="text-gray-600 text-sm px-3 mt-1">{dev.role}</p>
+                <p className="text-gray-600 text-sm px-3 mt-1">{dev.email}</p>
 
                 {/* Developer Links */}
                 <div className="flex gap-4 mt-4">
