@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes, FaUser, FaSignOutAlt } from "react-icons/fa";
 import { IoAddCircleSharp } from "react-icons/io5";
 import { GoHomeFill } from "react-icons/go";
+import { FaInfoCircle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 function DashboardHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [accountMenuOpen, setAccountMenuOpen] = useState(false);
   const dropdownRef = useRef(null);
-
   const navigate = useNavigate();
 
   // Close dropdown when clicking outside
@@ -47,7 +47,6 @@ function DashboardHeader() {
           <span>Home</span>
         </Link>
 
-        {/* Add Jobs Link with Icon */}
         <Link
           to="/dashboard/add-jobs"
           className="flex items-center gap-2 hover:underline hover:text-gray-300"
@@ -56,7 +55,7 @@ function DashboardHeader() {
           <span>Add Jobs</span>
         </Link>
 
-        {/* Account Dropdown (Click to Open) */}
+        {/* Account Dropdown */}
         <div className="relative" ref={dropdownRef}>
           <button
             onClick={() => setAccountMenuOpen(!accountMenuOpen)}
@@ -73,7 +72,6 @@ function DashboardHeader() {
             </div>
           </button>
 
-          {/* Dropdown Menu (Visible when clicked) */}
           {accountMenuOpen && (
             <div className="absolute right-0 mt-2 w-48 bg-white text-black shadow-lg rounded-lg">
               <Link
@@ -81,6 +79,12 @@ function DashboardHeader() {
                 className="block px-4 py-2 hover:bg-gray-100"
               >
                 Profile
+              </Link>
+              <Link
+                to="/dashboard/settings"
+                className="block px-4 py-2 hover:bg-gray-100"
+              >
+                Settings
               </Link>
               <button
                 className="block w-full text-left px-4 py-2 hover:bg-gray-100"
@@ -96,53 +100,89 @@ function DashboardHeader() {
       {/* Mobile Menu Button */}
       <button
         className="md:hidden text-2xl focus:outline-none"
-        onClick={() => setMenuOpen(!menuOpen)}
+        onClick={() => setMenuOpen(true)}
       >
-        {menuOpen ? <FaTimes /> : <FaBars />}
+        <FaBars />
       </button>
 
-      {/* Mobile Dropdown Menu */}
+      {/* Mobile Slide-in Menu */}
       <div
-        className={`absolute top-20 left-0 w-full bg-[#243642] p-5 flex flex-col items-center gap-4 text-lg md:hidden transition-all duration-300 ${
-          menuOpen ? "opacity-100 visible" : "opacity-0 invisible"
+        className={`fixed top-0 right-0 h-full w-4/5 sm:w-1/2 bg-[#1e293b] text-white shadow-lg transform transition-transform duration-300 ease-in-out z-50 ${
+          menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <Link
-          to="/dashboard"
-          className="flex items-center gap-2 hover:underline hover:text-gray-300"
-        >
-          <GoHomeFill className="text-xl" />
-          <span>Home</span>
-        </Link>
-
-        <Link
-          to="/dashboard/add-jobs"
-          className="flex items-center gap-2 hover:underline hover:text-gray-300"
-        >
-          <IoAddCircleSharp className="text-xl" />
-          <span>Add Jobs</span>
-        </Link>
-
-        {/* Account for Mobile View */}
-        <div className="flex flex-col items-center gap-3">
-          <Link to="/dashboard/account" className="flex items-center gap-3">
-            <img
-              className="w-10 h-10 rounded-full border-2 border-gray-300"
-              src="https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp"
-              alt="User Profile"
-            />
-            <div className="flex flex-col text-center">
-              <span>Account</span>
-              <span className="text-sm text-gray-300">Welcome, Vishal!</span>
-            </div>
-          </Link>
-          <button
-            className="mt-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
-            onClick={() => navigate(`/`)}
-          >
-            Logout
+        {/* Close Button */}
+        <div className="flex justify-end p-4">
+          <button onClick={() => setMenuOpen(false)} className="text-3xl">
+            <FaTimes />
           </button>
         </div>
+
+        {/* Profile Section */}
+        <div className="flex flex-col items-center border-b border-gray-600 pb-4">
+          <img
+            className="w-16 h-16 rounded-full border-2 border-gray-400"
+            src="https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp"
+            alt="User Profile"
+          />
+          <h3 className="mt-2 text-lg font-semibold">Vishal Sharma</h3>
+          <p className="text-sm text-gray-300">Welcome back!</p>
+        </div>
+
+        {/* Mobile Menu Links */}
+        <nav className="flex flex-col mt-4">
+          <Link
+            to="/dashboard"
+            className="flex items-center gap-3 px-6 py-4 text-lg hover:bg-[#334155] rounded-lg transition"
+            onClick={() => setMenuOpen(false)}
+          >
+            <GoHomeFill className="text-xl" />
+            <span>Home</span>
+          </Link>
+
+          <Link
+            to="/dashboard/add-jobs"
+            className="flex items-center gap-3 px-6 py-4 text-lg hover:bg-[#334155] rounded-lg transition"
+            onClick={() => setMenuOpen(false)}
+          >
+            <IoAddCircleSharp className="text-xl" />
+            <span>Add Jobs</span>
+          </Link>
+
+          <Link
+            to="/dashboard/about"
+            className="flex items-center gap-3 px-6 py-4 text-lg hover:bg-[#334155] rounded-lg transition"
+            onClick={() => setMenuOpen(false)}
+          >
+            <FaInfoCircle className="text-xl" />
+            <span>About</span>
+          </Link>
+
+          {/* Account Section */}
+          <div className="border-t border-gray-600 mt-4 pt-4">
+            <h3 className="px-6 text-sm text-gray-400">ACCOUNT</h3>
+            <Link
+              to="/dashboard/account"
+              className="flex items-center gap-3 px-6 py-4 text-lg hover:bg-[#334155] rounded-lg transition"
+              onClick={() => setMenuOpen(false)}
+            >
+              <FaUser className="text-xl" />
+              <span>Profile</span>
+            </Link>
+          </div>
+
+          {/* Logout Button */}
+          <button
+            className="flex items-center gap-3 px-6 py-4 text-lg hover:bg-red-600 rounded-lg transition mt-4"
+            onClick={() => {
+              setMenuOpen(false);
+              navigate(`/`);
+            }}
+          >
+            <FaSignOutAlt className="text-xl" />
+            <span>Logout</span>
+          </button>
+        </nav>
       </div>
     </header>
   );
