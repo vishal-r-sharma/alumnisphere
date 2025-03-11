@@ -1,4 +1,4 @@
-name: Deploy React to cPanel
+name: Deploy React to cPanel Subdomain
 
 on:
   push:
@@ -28,4 +28,4 @@ jobs:
 
     - name: Deploy via Rsync
       run: |
-        rsync -avz --delete frontend_alumnisphere/build/ ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }}:/home/${{ secrets.CPANEL_USERNAME }}/public_html/
+        rsync -avz --delete frontend_alumnisphere/build/ ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }}:/home/sewturbhe/alumnisphere.vishalsharmadev.in/
