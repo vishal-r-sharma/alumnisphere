@@ -21,9 +21,10 @@ jobs:
 
     - name: Deploy via SFTP
       run: |
-        sudo apt-get install -y lftp
-        lftp -c "
-        open -u ${{ secrets.CPANEL_USERNAME }},${{ secrets.CPANEL_PASSWORD }} sftp://${{ secrets.CPANEL_HOST }};
-        mirror -R frontend_alumnisphere/dist /home/sewturbhe/alumnisphere.vishalsharmadev.in/ --delete --verbose;
-        bye
-        "
+        sudo apt-get install -y sshpass
+        sshpass -p "${{ secrets.CPANEL_PASSWORD }}" sftp -o StrictHostKeyChecking=no ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }} <<EOF
+          lcd frontend_alumnisphere/dist
+          cd /home/sewturbhe/alumnisphere.vishalsharmadev.in/
+          put -r *
+          bye
+        EOF
