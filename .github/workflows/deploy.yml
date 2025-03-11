@@ -3,7 +3,7 @@ name: Deploy React to cPanel Subdomain
 on:
   push:
     branches:
-      - main  # Runs on every push to the main branch
+      - main  # Change if using a different branch
 
 jobs:
   deploy:
@@ -24,11 +24,8 @@ jobs:
         mkdir -p ~/.ssh
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
-        eval "$(ssh-agent -s)"
-        ssh-add ~/.ssh/id_rsa
         ssh-keyscan -H ${{ secrets.CPANEL_HOST }} >> ~/.ssh/known_hosts
-        echo "SSH setup complete"
 
     - name: Deploy via Rsync
       run: |
-        rsync -avz -e "ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa" --delete frontend_alumnisphere/dist/ ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }}:/home/sewturbhe/alumnisphere.vishalsharmadev.in/
+        rsync -avz --delete frontend_alumnisphere/dist/ ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }}:/home/sewturbhe/alumnisphere.vishalsharmadev.in/
