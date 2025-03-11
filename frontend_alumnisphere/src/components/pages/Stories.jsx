@@ -55,7 +55,7 @@ function Stories() {
 
       {/* Page Heading */}
       <div className="text-center mt-4">
-        <h1 className="text-3xl font-bold text-gray-800">Success Stories</h1>
+        <h1 className="text-3xl font-bold text-gray-800">Success Storieses</h1>
       </div>
 
       {/* Stories Grid */}
