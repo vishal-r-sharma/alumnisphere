@@ -8,7 +8,7 @@ const developers = [
     name: "Vishal Sharma",
     role: "Full-Stack Developer | MERN Stack",
     image: "https://vishalsharmadev.in/normalphotos/vishal.jpg",
-    linkedin: "https://www.linkedin.com/in/vishalsharma",
+    linkedin: "https://www.linkedin.com/in/vishal-r-sharma",
     portfolio: "https://vishalsharmadev.in",
     email: "contact@vishalsharmadev.in",
   },
@@ -16,25 +16,25 @@ const developers = [
     name: "Hitesh Prajapati",
     role: "Backend Developer | Node.js | MongoDB",
     image: "https://vishalsharmadev.in/normalphotos/hitesh.jpeg",
-    linkedin: "#",
+    linkedin: "https://www.linkedin.com/in/hitesh-prajapati-6b337524b/",
     portfolio: "#",
-    email: "hitesh@gmail.com",
+    email: "hitesh06p@gmail.com",
   },
   {
     name: "Vrushabh Prajapati",
     role: "Frontend Developer | React.js | UI/UX",
     image: "https://vishalsharmadev.in/normalphotos/vrushabh.jpg",
-    linkedin: "#",
+    linkedin: "https://www.linkedin.com/in/vrushabh-prajapati-095701277/",
     portfolio: "#",
-    email: "vrushabh@gmail.com",
+    email: "ioteprajapativrushabh@gmail.com",
   },
   {
     name: "Amol Sahu",
     role: "Database Architect | SQL | Firebase",
     image: "https://vishalsharmadev.in/normalphotos/amol.jpeg",
-    linkedin: "#",
+    linkedin: "https://www.linkedin.com/in/amol-sahu-0bbb912a4/",
     portfolio: "#",
-    email: "amolsahu@gmail.com",
+    email: "amolsahu2025@gmail.com",
   },
 ];
 
@@ -105,7 +105,7 @@ function About() {
                 <div className="flex gap-4 mt-4">
                   <a
                     href={dev.portfolio}
-                    target="_blank"
+                    target={dev.portfolio === "#" ? undefined : "_blank"}
                     rel="noopener noreferrer"
                     className="text-blue-600 hover:text-blue-800 transition duration-200 text-2xl"
                   >
