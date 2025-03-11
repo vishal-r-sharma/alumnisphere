@@ -28,4 +28,4 @@ jobs:
 
     - name: Deploy via Rsync
       run: |
-        rsync -avz --delete frontend_alumnisphere/build/ ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }}:/home/sewturbhe/alumnisphere.vishalsharmadev.in/
+        rsync -avz --delete frontend_alumnisphere/dist/ ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }}:/home/sewturbhe/alumnisphere.vishalsharmadev.in/
