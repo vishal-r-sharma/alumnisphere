@@ -3,7 +3,7 @@ name: Deploy React to cPanel Subdomain
 on:
   push:
     branches:
-      - main  # Change if using a different branch
+      - main  # Runs on every push to the main branch
 
 jobs:
   deploy:
@@ -19,13 +19,11 @@ jobs:
         npm install
         npm run build
 
-    - name: Setup SSH Connection
+    - name: Deploy via SFTP
       run: |
-        mkdir -p ~/.ssh
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan -H ${{ secrets.CPANEL_HOST }} >> ~/.ssh/known_hosts
-
-    - name: Deploy via Rsync
-      run: |
-        rsync -avz --delete frontend_alumnisphere/dist/ ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }}:/home/sewturbhe/alumnisphere.vishalsharmadev.in/
+        sudo apt-get install -y lftp
+        lftp -c "
+        open -u ${{ secrets.CPANEL_USERNAME }},${{ secrets.CPANEL_PASSWORD }} sftp://${{ secrets.CPANEL_HOST }};
+        mirror -R frontend_alumnisphere/dist /home/sewturbhe/alumnisphere.vishalsharmadev.in/ --delete --verbose;
+        bye
+        "
