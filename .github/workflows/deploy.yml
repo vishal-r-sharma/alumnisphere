@@ -29,6 +29,10 @@ jobs:
         ssh-keyscan -H ${{ secrets.CPANEL_HOST }} >> ~/.ssh/known_hosts
         echo "SSH setup complete"
 
+    - name: Debug SSH & Check Remote Path
+      run: |
+        ssh -o StrictHostKeyChecking=no ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }} "ls -lah /home/sewturbhe/alumnisphere.vishalsharmadev.in/"
+
     - name: Deploy via Rsync
       run: |
-        rsync -avz --delete frontend_alumnisphere/dist/ ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }}:/home/sewturbhe/alumnisphere.vishalsharmadev.in/
+        rsync -avz -e "ssh -o StrictHostKeyChecking=no" --delete frontend_alumnisphere/dist/ ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }}:/home/sewturbhe/alumnisphere.vishalsharmadev.in/
