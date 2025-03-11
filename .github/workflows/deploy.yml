@@ -1,4 +1,4 @@
-name: Deploy React to cPanel (Subdomain)
+name: Deploy React to cPanel Subdomain
 
 on:
   push:
@@ -24,8 +24,6 @@ jobs:
         mkdir -p ~/.ssh
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
-        eval "$(ssh-agent -s)"
-        ssh-add ~/.ssh/id_rsa
         ssh-keyscan -H ${{ secrets.CPANEL_HOST }} >> ~/.ssh/known_hosts
 
     - name: Deploy via Rsync
