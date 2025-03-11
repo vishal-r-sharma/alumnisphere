@@ -17,7 +17,7 @@ import {
 const stats = [
   { title: "Total Students", value: 1500 },
   { title: "Total Alumni", value: 2500 },
-  { title: "Total Jobs", value: 320 },
+  { title: "Total Jobs Posted", value: 320 },
 ];
 
 const pieData = [
@@ -34,6 +34,12 @@ const areaData = [
   { month: "Apr", jobs: 70 },
   { month: "May", jobs: 90 },
   { month: "Jun", jobs: 110 },
+  { month: "Jul", jobs: 101 },
+  { month: "Aug", jobs: 108 },
+  { month: "Sec", jobs: 92 },
+  { month: "Oct", jobs: 50 },
+  { month: "Nov", jobs: 160 },
+  { month: "Dec", jobs: 99 },
 ];
 
 function Dashboard() {
