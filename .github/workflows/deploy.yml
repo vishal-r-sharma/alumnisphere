@@ -3,7 +3,7 @@ name: Deploy React to cPanel Subdomain
 on:
   push:
     branches:
-      - main  # Change if using a different branchs
+      - main  # Change if using a different branch
 
 jobs:
   deploy:
