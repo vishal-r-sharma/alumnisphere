@@ -10,16 +10,57 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    
+    # Step 1: Checkout Repository
     - name: Checkout Repository
       uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+      # This step fetches your latest code from GitHub
 
-    - name: Install Dependencies & Build React App
+    # Step 2: Display Node.js Version (for debugging)
+    - name: Display Node.js Version
+      run: node -v
+
+    # Step 3: Install Dependencies
+    - name: Install Dependencies
       run: |
+        echo "Installing dependencies..."
         cd frontend_alumnisphere
         npm install
-        npm run build
+      # Installs required packages from package.json
 
-    - name: Deploy via Rsync (Only Changed Files)
+    # Step 4: Run Tests (Fail Fast if Tests Fail)
+    - name: Run Automated Tests
       run: |
+        echo "Running tests..."
+        cd frontend_alumnisphere
+        npm test
+      continue-on-error: false
+      # This runs the test suite. If tests fail, deployment stops.
+
+    # Step 5: Build React App
+    - name: Build React App
+      run: |
+        echo "Building React App..."
+        cd frontend_alumnisphere
+        npm run build
+      # Generates production-ready files in frontend_alumnisphere/dist/
+
+    # Step 6: Install Rsync & SSH Dependencies
+    - name: Install Rsync & SSH Tools
+      run: |
+        echo "Installing rsync & sshpass..."
         sudo apt-get install -y rsync sshpass
+      # Rsync ensures only changed files are uploaded
+
+    # Step 7: Deploy via Rsync (Only Changed Files)
+    - name: Deploy to cPanel Server
+      run: |
+        echo "Deploying files to cPanel..."
         rsync -avz --delete --exclude='.git/' -e "sshpass -p '${{ secrets.CPANEL_PASSWORD }}' ssh -o StrictHostKeyChecking=no" frontend_alumnisphere/dist/ ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }}:/home/sewturbhe/alumnisphere.vishalsharmadev.in/
+      # Uploads only modified files while removing outdated ones
+
+    # Step 8: Confirm Deployment
+    - name: Confirm Deployment
+      run: echo "✅ Deployment completed successfully!"
