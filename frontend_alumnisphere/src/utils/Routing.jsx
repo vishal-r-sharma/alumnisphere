@@ -11,6 +11,7 @@ import Jobs from "../components/pages/Jobs";
 import Stories from "../components/pages/Stories";
 import Addjobs from "../components/pages/Addjobs";
 import Savedjobs from "../components/pages/Savedjobs";
+import Error404 from "../components/pages/Error404";
 
 function Routing() {
   return (
@@ -26,6 +27,9 @@ function Routing() {
       <Route path="/dashboard/jobs" element={<Jobs />} />
       <Route path="/dashboard/stories" element={<Stories />} />
       <Route path="/dashboard/alumnidirectory" element={<Alumnidirectory />} />
+
+      {/* 404 Catch-All Route */}
+      <Route path="*" element={<Error404 />} />
     </Routes>
   );
 }
