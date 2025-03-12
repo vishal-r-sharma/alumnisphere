@@ -19,7 +19,12 @@ jobs:
         npm install
         npm run build
 
-    - name: Deploy via Rsync (Only Changed Files)
+    - name: Deploy via SFTP
       run: |
-        sudo apt-get install -y rsync sshpass
-        rsync -avz --delete --exclude='.git/' -e "sshpass -p '${{ secrets.CPANEL_PASSWORD }}' ssh -o StrictHostKeyChecking=no" frontend_alumnisphere/dist/ ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }}:/home/sewturbhe/alumnisphere.vishalsharmadev.in/
+        sudo apt-get install -y sshpass
+        sshpass -p "${{ secrets.CPANEL_PASSWORD }}" sftp -o StrictHostKeyChecking=no ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }} <<EOF
+          lcd frontend_alumnisphere/dist
+          cd /home/sewturbhe/alumnisphere.vishalsharmadev.in/
+          put -r *
+          bye
+        EOF
