@@ -5,7 +5,7 @@ import { FaLinkedin, FaGlobe } from "react-icons/fa";
 
 const developers = [
   {
-    name: "Vishal Sharma",
+    name: "Vishal  Sharma",
     role: "Full-Stack Developer | MERN Stack",
     image: "https://vishalsharmadev.in/normalphotos/vishal.jpg",
     linkedin: "https://www.linkedin.com/in/vishal-r-sharma",
