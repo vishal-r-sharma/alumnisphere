@@ -27,6 +27,7 @@ function Routing() {
       <Route path="/dashboard/jobs" element={<Jobs />} />
       <Route path="/dashboard/stories" element={<Stories />} />
       <Route path="/dashboard/alumnidirectory" element={<Alumnidirectory />} />
+      
       {/* 404 Catch-All Route */}
       <Route path="*" element={<Error404 />} />
     </Routes>

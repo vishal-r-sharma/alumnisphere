@@ -49,8 +49,10 @@ jobs:
     - name: Deploy to cPanel Server
       run: |
         echo "Deploying files to cPanel..."
-        rsync -avz --delete --exclude='.git/' -e "sshpass -p '${{ secrets.CPANEL_PASSWORD }}' ssh -o StrictHostKeyChecking=no" frontend_alumnisphere/dist/ ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }}:/home/sewturbhe/alumnisphere.vishalsharmadev.in/
-      # Uploads only modified files while removing outdated ones
+        rsync -avz --delete --exclude='.git/' --exclude='.htaccess' --exclude='.env' \
+        -e "sshpass -p '${{ secrets.CPANEL_PASSWORD }}' ssh -o StrictHostKeyChecking=no" \
+        frontend_alumnisphere/dist/ ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }}:/home/sewturbhe/alumnisphere.vishalsharmadev.in/
+
 
     # Step 7: Confirm Deployment
     - name: Confirm Deployment
