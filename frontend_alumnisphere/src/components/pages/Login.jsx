@@ -6,6 +6,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   // Function to validate email
   const handleEmailChange = (e) => {
@@ -22,13 +23,19 @@ function Login() {
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (emailError || !email || !password) {
       return;
     }
+    setLoading(true);
     // Handle login logic here (e.g., API call)
     console.log("Logging in with:", { email, password });
+    // Simulate API call
+    setTimeout(() => {
+      setLoading(false);
+      // Handle success or error response
+    }, 2000);
   };
 
   return (
@@ -79,9 +86,13 @@ function Login() {
               value={email}
               onChange={handleEmailChange}
               required
+              aria-invalid={!!emailError}
+              aria-describedby="email-error"
             />
             {emailError && (
-              <span className="text-red-500 text-sm">{emailError}</span>
+              <span id="email-error" className="text-red-500 text-sm" role="alert">
+                {emailError}
+              </span>
             )}
 
             <label className="font-medium text-gray-700" htmlFor="password">
@@ -99,10 +110,10 @@ function Login() {
 
             <button
               type="submit"
-              className="w-full h-[45px] bg-[#117554] text-white font-bold rounded-md hover:bg-[#0D5A40] transition duration-300"
-              disabled={!!emailError || !email || !password}
+              className={`w-full h-[45px] bg-[#117554] text-white font-bold rounded-md hover:bg-[#0D5A40] transition duration-300 ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
+              disabled={!!emailError || !email || !password || loading}
             >
-              Login
+              {loading ? "Logging in..." : "Login"}
             </button>
 
             <p className="text-center text-gray-700 text-lg">
@@ -112,6 +123,14 @@ function Login() {
                 className="text-[#117554] font-semibold hover:underline"
               >
                 Signup
+              </Link>
+            </p>
+            <p className="text-center text-gray-700 text-lg">
+              <Link
+                to="/forgot-password"
+                className="text-[#117554] font-semibold hover:underline"
+              >
+                Forgot Password?
               </Link>
             </p>
           </form>
