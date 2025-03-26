@@ -10,7 +10,7 @@ function Stories() {
       id: 1,
       title: "Journey from Student to CEO",
       image:
-        "https://gratisography.com/wp-content/uploads/2025/01/gratisography-dog-vacation-800x525.jpg",
+        "https://papers.co/wallpaper/papers.co-nb98-city-night-success-3million-river-36-3840x2400-4k-wallpaper.jpg",
       content:
         "A student's incredible journey to becoming a successful CEO. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
     },
@@ -18,7 +18,7 @@ function Stories() {
       id: 2,
       title: "From Engineer to Entrepreneur",
       image:
-        "https://t3.ftcdn.net/jpg/07/61/66/26/360_F_761662688_PtKytZfox6XNk7bslR5ahhGswCJN5QBZ.jpg",
+        "https://images.unsplash.com/photo-1523287562758-66c7fc58967f?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c3VjY2Vzc3xlbnwwfHwwfHx8MA%3D%3D",
       content:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam minima eaque odio ratione fugiat aliquam facere dignissimos amet magnam, architecto doloremque deserunt. ".repeat(
           10
@@ -28,7 +28,7 @@ function Stories() {
       id: 3,
       title: "Breaking Barriers in Tech",
       image:
-        "https://gratisography.com/wp-content/uploads/2024/10/gratisography-cool-cat-800x525.jpg",
+        "https://static.vecteezy.com/system/resources/thumbnails/030/193/641/small_2x/the-person-showing-hologram-success-text-in-hand-progress-concept-or-success-concept-global-data-connection-big-data-data-search-big-data-and-business-process-photo.JPG",
       content:
         "A young innovator making a difference in the technology industry. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     },

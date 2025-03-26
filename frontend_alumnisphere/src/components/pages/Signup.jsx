@@ -37,7 +37,7 @@ function Signup() {
     <div>
       <Header />
       <div className="flex justify-center py-8">
-        <div className="w-[90%] md:w-[73%] h-auto bg-[#EBEAFF] flex flex-wrap md:flex-nowrap justify-evenly items-center p-6 rounded-lg shadow-lg gap-6">
+        <div className="w-[90%] md:w-[73%] h-auto bg-[#ffffff] flex flex-wrap md:flex-nowrap justify-evenly items-center p-6 rounded-lg shadow-lg gap-6">
           {/* Form Section */}
           <form className="flex flex-col gap-4 w-full max-w-xs md:max-w-md">
             <h1 className="text-3xl font-bold text-gray-800 text-center">

@@ -41,7 +41,7 @@ function ForgotPassword() {
     <>
       <Header />
       <div className="flex justify-center py-8">
-        <div className="w-[90%] md:w-[50%] h-auto bg-[#EBEAFF] flex flex-col justify-center items-center p-6 rounded-lg shadow-lg gap-6">
+        <div className="w-[90%] md:w-[50%] h-auto bg-[#ffffff] flex flex-col justify-center items-center p-6 rounded-lg shadow-lg gap-6">
           <h1 className="text-3xl font-bold text-gray-800 text-center">
             Forgot Password
           </h1>
@@ -73,14 +73,20 @@ function ForgotPassword() {
               aria-describedby="email-error"
             />
             {emailError && (
-              <span id="email-error" className="text-red-500 text-sm" role="alert">
+              <span
+                id="email-error"
+                className="text-red-500 text-sm"
+                role="alert"
+              >
                 {emailError}
               </span>
             )}
 
             <button
               type="submit"
-              className={`w-full h-[45px] bg-[#117554] text-white font-bold rounded-md hover:bg-[#0D5A40] transition duration-300 ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
+              className={`w-full h-[45px] bg-[#117554] text-white font-bold rounded-md hover:bg-[#0D5A40] transition duration-300 ${
+                loading ? "opacity-50 cursor-not-allowed" : ""
+              }`}
               disabled={!!emailError || !email || loading}
             >
               {loading ? "Sending..." : "Send Reset Link"}

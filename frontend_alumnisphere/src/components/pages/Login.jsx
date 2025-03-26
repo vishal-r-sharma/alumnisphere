@@ -49,12 +49,11 @@ function Login() {
       </Link>
 
       <div className="flex justify-center py-8">
-        <div className="w-[90%] md:w-[73%] h-auto bg-[#EBEAFF] flex flex-wrap md:flex-nowrap justify-evenly items-center p-6 rounded-lg shadow-lg gap-6">
-          
+        <div className="w-[90%] md:w-[73%] h-auto bg-[#ffffff] flex flex-wrap md:flex-nowrap justify-evenly items-center p-6 rounded-lg shadow-lg gap-6">
           {/* Image Section */}
           <img
-            className="w-[300px] md:w-[440px] rounded-md"
-            src="https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp"
+            className="w-[200px] md:w-[400px] rounded-md"
+            src="https://ecurater.com/wp-content/uploads/2020/10/login1.png"
             alt="Login Illustration"
           />
 
@@ -90,7 +89,11 @@ function Login() {
               aria-describedby="email-error"
             />
             {emailError && (
-              <span id="email-error" className="text-red-500 text-sm" role="alert">
+              <span
+                id="email-error"
+                className="text-red-500 text-sm"
+                role="alert"
+              >
                 {emailError}
               </span>
             )}
@@ -110,7 +113,9 @@ function Login() {
 
             <button
               type="submit"
-              className={`w-full h-[45px] bg-[#117554] text-white font-bold rounded-md hover:bg-[#0D5A40] transition duration-300 ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
+              className={`w-full h-[45px] bg-[#117554] text-white font-bold rounded-md hover:bg-[#0D5A40] transition duration-300 ${
+                loading ? "opacity-50 cursor-not-allowed" : ""
+              }`}
               disabled={!!emailError || !email || !password || loading}
             >
               {loading ? "Logging in..." : "Login"}
