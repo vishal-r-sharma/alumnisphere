@@ -53,7 +53,7 @@ function Login() {
           {/* Image Section */}
           <img
             className="w-[200px] md:w-[400px] rounded-md"
-            src="https://ecurater.com/wp-content/uploads/2020/10/login1.png"
+            src="https://www.ptecheducation.com/assets/images/login.png"
             alt="Login Illustration"
           />
 
